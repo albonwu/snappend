@@ -1,39 +1,151 @@
 body {
-    background-color: black;
+  background-color: black;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
-.enqueue {
-    font: 50pt "Futura", bold;
-    color: white
+.title {
+  font-family: "Futura-CondensedExtraBold";
+  font-size: 100pt;
+  line-height: 30pt;
+  color: white;
+}
+
+.logo {
+padding-top: 50px;
+margin: auto;
+width: 100%;
 }
 
 /* button 54 by Michael McMillan */
 .button-54 {
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: white;
-  background-color: black;
-  cursor: pointer;
-  border: 3px solid;
-  padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+vertical-align: middle;
+font-family: "Open Sans", sans-serif;
+font-size: 25px;
+letter-spacing: 2px;
+text-decoration: none;
+text-transform: uppercase;
+color: white;
+background-color: black;
+cursor: pointer;
+border: 5px solid;
+padding: 0.25em 0.5em;
+box-shadow: 2px 2px 0px 0px, 4px 4px 0px 0px, 6px 6px 0px 0px, 8px 8px 0px 0px, 10px 10px 0px 0px;
+position: relative;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
 }
 
 .button-54:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 5px;
-  left: 5px;
+box-shadow: 0px 0px 0px 0px;
+top: 5px;
+left: 5px;
 }
 
 @media (min-width: 768px) {
-  .button-54 {
-    padding: 0.25em 0.75em;
-  }
+.button-54 {
+  padding: 0.25em 0.75em;
+}
+}
+
+.bottom {
+font-family: "Futura";
+padding-top: 5%; 
+text-align: center;
+display: block;
+color: white; 
+}
+
+.modal {
+position: fixed; /* Stay in place */
+z-index: 1; 
+left: 0;
+top: 0;
+width: 100%; 
+height: 100%; 
+overflow: auto; 
+/* background-color: rgb(255, 255, 255);  */
+background-color: rgba(255, 255, 255, 0.4); 
+}
+
+.modal-content {
+font-family: "Futura";
+background-color: #000000;
+color: white;
+margin: 15% auto; /* 15% from the top and centered */
+padding: 50px;
+/* border: 1px solid #FFFFFF; */
+/* box-shadow: 5px 5px 5px white; */
+width: 50%; /* Could be more or less, depending on screen size */
+}
+
+.text-button {
+vertical-align: middle;
+font-family: "Open Sans", sans-serif;
+font-size: 12px;
+letter-spacing: 2px;
+text-decoration: none;
+text-transform: uppercase;
+color: white;
+background-color: black;
+cursor: pointer;
+border: 2px solid;
+padding: 0.25em 0.5em;
+box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+position: relative;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+.text-button:active {
+box-shadow: 0px 0px 0px 0px;
+top: 5px;
+left: 5px;
+}
+
+.authorize-button {
+vertical-align: middle;
+font-family: "Open Sans", sans-serif;
+font-size: 20px;
+letter-spacing: 2px;
+text-decoration: none;
+text-transform: uppercase;
+color: white;
+background-color: black;
+cursor: pointer;
+border: 2px solid;
+padding: 0.25em 0.5em;
+box-shadow: 1.5px 1.5px 0px 0px, 2.5px 2.5px 0px 0px, 3.5px 3.5px 0px 0px, 4.5px 4.5px 0px 0px, 5.5px 5.5px 0px 0px;
+position: relative;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+.authorize-button:active {
+box-shadow: 0px 0px 0px 0px;
+top: 5px;
+left: 5px;
+}
+
+.auth {
+margin: auto;
+width: 20%;
+padding-top: 40px;
+}
+
+li{
+margin: 22px 0;
+}
+
+a:link {
+color: white;
+}
+a:visited {
+color: white;
+}
+a:active {
+color: white;
 }
