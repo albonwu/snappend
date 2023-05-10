@@ -1,11 +1,11 @@
-const { app, BrowserWindow } = require('electron')
-const server = require('./server.js');
-const path = require('path')
-const crypto = require('crypto');
-const LocalStorage = require('node-localstorage').LocalStorage;
-const localStorage = new LocalStorage('./localStorage');
+const { app, BrowserWindow } = require("electron")
+const server = require("./server.js");
+const path = require("path")
+const crypto = require("crypto");
+const LocalStorage = require("node-localstorage").LocalStorage;
+const localStorage = new LocalStorage("./localStorage");
 const url = require("url");
-const ipc = require('electron').ipcMain;
+const ipc = require("electron").ipcMain;
 
 const clientId = "8bf385dc4d9e43ca8b524f07a0fbbf8d";
 const redirectUri = "http://localhost:3000/callback";
@@ -14,18 +14,15 @@ let code = undefined;
 
 app.whenReady().then(async () => {
     createWindow();
-    app.on('activate', () => {
+    app.on("activate", () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
     })
 
-
+    let token = undefined
     ipc.on("auth", async function (__event, __data) {
-        if (!code) {
-            code = await authenticate();
-        }
+        code = await authenticate();
+        token = await getToken(clientId, code);
     })
-
-    const token = await getToken(clientId, code);
 
     ipc.on("enqueue", function (__event, __data) {
         queueSong(token);
@@ -35,12 +32,12 @@ app.whenReady().then(async () => {
 const createWindow = () => {
     const win = new BrowserWindow({
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, "preload.js")
         }
     })
 
     win.maximize();
-    win.loadFile('index.html');
+    win.loadFile("index.html");
 }
 
 // open window for authorization
@@ -85,7 +82,7 @@ async function authenticate() {
     });
 
     // this gives weird output after closing
-    // authWindow.on('closed', () => {
+    // authWindow.on("closed", () => {
     //     authWindow = null;
     // });
 }
@@ -113,7 +110,7 @@ async function getToken(clientId, code) {
 // challenge == verifier + SHA-256
 function generateCodeChallenge(codeVerifier) {
     const data = new TextEncoder().encode(codeVerifier);
-    const digest = crypto.createHash('sha256').update(data).digest(null);
+    const digest = crypto.createHash("sha256").update(data).digest(null);
 
     return btoa(String.fromCharCode.apply(null, [...new Uint8Array(digest)]))
         .replace(/\+/g, '-')
@@ -123,16 +120,16 @@ function generateCodeChallenge(codeVerifier) {
     // btoa is deprecated but spotify is very particular about code challenges
 
     // const str = String.fromCharCode.apply(null, [...new Uint8Array(digest)]);
-    // return Buffer.from(str).toString('base64')
-    //     .replace(/\+/g, '-')
-    //     .replace(/\//g, '_')
-    //     .replace(/=+$/, '');
+    // return Buffer.from(str).toString("base64")
+    //     .replace(/\+/g, "-")
+    //     .replace(/\//g, "_")
+    //     .replace(/=+$/, "");
 }
 
 // verifier == random string
 function generateCodeVerifier(length) {
-    let text = '';
-    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let text = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     for (let i = 0; i < length; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -148,6 +145,6 @@ async function queueSong(token) {
     });
 }
 
-app.on('window-all-closed', () => {
-    if (process.platform != 'darwin') app.quit();
+app.on("window-all-closed", () => {
+    if (process.platform != "darwin") app.quit();
 })

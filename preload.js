@@ -1,10 +1,16 @@
+const { ipcRenderer } = require('electron');
+
 window.addEventListener('DOMContentLoaded', () => {
-    const replaceText = (selector, text) => {
-      const element = document.getElementById(selector)
-      if (element) element.innerText = text
-    }
-  
-    for (const dependency of ['chrome', 'node', 'electron']) {
-      replaceText(`${dependency}-version`, process.versions[dependency])
-    }
+  const authButton = document.getElementById('authorize');
+  authButton.addEventListener("click", function () {
+    ipcRenderer.send("auth");
+    const modal = document.getElementById("instructions");
+    modal.style.display = "none";
+  });
+
+  const enqueueButton = document.getElementById("enqueue");
+  enqueueButton.addEventListener("click", function () {
+    console.log("beep boop from renderer")
+    ipcRenderer.send("enqueue");
   })
+});

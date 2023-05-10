@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Demo - Enqueue "Snap Out of It"</title>
-    <script src="script.js" type="module"></script>
+    <title>Enqueue "Snap Out of It"</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
@@ -33,10 +32,6 @@
 
     </div>
 
-    <div class="bottom">
-        <a style="text-align: center;" href="https://albonwu.com/posts/enqueue-snap">Original post</a>
-    </div>
-
     <div id="instructions" class="modal">
         <div class="modal-content">
             <h1>Instructions</h1>
@@ -51,21 +46,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const ipc = require('electron').ipcRenderer;
-        const authButton = document.getElementById('authorize');
-        authButton.addEventListener('click', function () {
-            ipc.send('auth', 'activated');
-        });
-
-        const enqueueButton = document.getElementbyId("enqueue");
-        enqueueButton.addEventListener("click", function() {
-            const modal = document.getElementById("instructions");
-        modal.style.display = "none";
-            ipc.send("enqueue", "activated");
-        })
-    </script>
 </body>
 
 </html>
