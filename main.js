@@ -13,7 +13,7 @@ const scope = "user-modify-playback-state";
 let code = undefined;
 
 app.whenReady().then(async () => {
-    createWindow();
+    const win = createWindow();
     app.on("activate", () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
     })
@@ -21,6 +21,7 @@ app.whenReady().then(async () => {
     let token = undefined
     ipc.on("auth", async function (__event, __data) {
         code = await authenticate();
+        win.webContents.send("finishedAuth");
         token = await getToken(clientId, code);
     })
 
@@ -38,6 +39,8 @@ const createWindow = () => {
 
     win.maximize();
     win.loadFile("index.html");
+
+    return win;
 }
 
 // open window for authorization

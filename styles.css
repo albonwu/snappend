@@ -5,7 +5,9 @@ body {
 }
 
 .title {
-  font-family: "Futura-CondensedExtraBold";
+  font-family: "Futura-CondensedExtraBold", sans-serif;
+  font-weight: 800;
+  font-stretch: condensed;
   font-size: 100pt;
   line-height: 30pt;
   color: white;
@@ -70,7 +72,7 @@ background-color: rgba(255, 255, 255, 0.4);
 }
 
 .modal-content {
-font-family: "Futura";
+font-family: "Futura", sans-serif;
 background-color: #000000;
 color: white;
 margin: 15% auto; /* 15% from the top and centered */
