@@ -34,10 +34,12 @@ const createWindow = () => {
     const win = new BrowserWindow({
         webPreferences: {
             preload: path.join(__dirname, "preload.js")
-        }
+        },
+        icon: "./resources/icon.png"
     })
 
     win.maximize();
+    win.setTitle('Enqueue "Snap Out of It"') 
     win.loadFile("index.html");
 
     return win;
