@@ -25,6 +25,8 @@ app.whenReady().then(async () => {
         token = await getToken(clientId, code);
     })
 
+    win.loadURL("/close")
+
     ipc.on("enqueue", function (__event, __data) {
         queueSong(token);
     })
