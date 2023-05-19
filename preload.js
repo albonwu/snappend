@@ -13,7 +13,6 @@ window.addEventListener('DOMContentLoaded', () => {
   
   const enqueueButton = document.getElementById("enqueue");
   enqueueButton.addEventListener("click", function () {
-    console.log("beep boop from renderer")
     ipcRenderer.send("enqueue");
   })
 });
